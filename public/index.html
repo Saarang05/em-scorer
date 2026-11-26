@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Erasmus Mundus Profile Scorer</title>
+  <meta name="description" content="Free Erasmus Mundus scholarship readiness score from your resume.">
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+<main>
+  <section id="view-form">
+    <h1>How ready are you for an Erasmus Mundus scholarship?</h1>
+    <p class="lead">Upload your resume and get a free score out of 100 in under 30 seconds.</p>
+    <form id="score-form" novalidate>
+      <label id="drop" class="drop">
+        <input id="file" type="file" accept=".pdf,.docx">
+        <strong id="file-name">Tap to upload your resume</strong>
+        <span>PDF or DOCX, max 5 MB</span>
+      </label>
+      <p class="privacy">🔒 We don't keep your resume. The file and its text are never stored; only the extracted details and your score are saved. The text is processed by an AI service to extract them.</p>
+
+      <fieldset>
+        <legend>4 quick questions</legend>
+        <label for="cgpa">1. Your CGPA or percentage</label>
+        <div class="row">
+          <input id="cgpa" type="number" inputmode="decimal" step="0.01" min="0" placeholder="e.g. 8.4" required>
+          <select id="scale" aria-label="CGPA scale">
+            <option value="10">out of 10</option>
+            <option value="4">out of 4</option>
+            <option value="percent">percent (%)</option>
+          </select>
+        </div>
+        <label for="englishTest">2. English test</label>
+        <div class="row">
+          <select id="englishTest" required>
+            <option value="">Select</option>
+            <option value="ielts">IELTS</option>
+            <option value="toefl">TOEFL (out of 120)</option>
+            <option value="none">None yet</option>
+          </select>
+          <input id="englishScore" type="number" inputmode="decimal" step="0.5" min="0" placeholder="Score" aria-label="English score" hidden>
+        </div>
+        <label for="targetField">3. Target field</label>
+        <select id="targetField" required><option value="">Loading…</option></select>
+        <label for="intakeYear">4. Intake year</label>
+        <select id="intakeYear" required></select>
+      </fieldset>
+
+      <div id="form-error" class="error" role="alert" hidden>
+        <p></p>
+        <button type="button" id="retry" hidden>Retry</button>
+      </div>
+      <button type="submit" class="primary">Get my score</button>
+    </form>
+  </section>
+
+  <section id="view-loading" hidden aria-live="polite">
+    <h2>Scoring your profile…</h2>
+    <ol id="steps">
+      <li>Uploading your resume</li>
+      <li>Reading the text</li>
+      <li>Identifying education, work and projects</li>
+      <li>Calculating your score</li>
+    </ol>
+    <p class="muted">This usually takes less than 30 seconds.</p>
+  </section>
+
+  <section id="view-result" hidden>
+    <div class="card score">
+      <p class="muted">Your readiness score</p>
+      <p class="big"><span id="score"></span><small>/100</small></p>
+      <h2 id="band"></h2>
+      <p id="message"></p>
+    </div>
+    <div id="hard-gaps"></div>
+
+    <form id="lead-form" class="card" novalidate>
+      <h3>Unlock your full report</h3>
+      <p class="muted">Category breakdown, your 3 biggest gaps with fixes, and 3 matching programmes.</p>
+      <label for="name">Full name</label>
+      <input id="name" autocomplete="name" required>
+      <label for="email">Email</label>
+      <input id="email" type="email" autocomplete="email" required>
+      <label for="phone">Phone (WhatsApp)</label>
+      <input id="phone" type="tel" autocomplete="tel" placeholder="+91 98765 43210" required>
+      <label class="check"><input id="consent" type="checkbox"> <span>I agree that my contact details, extracted profile and score are saved, and that I may be contacted about my application.</span></label>
+      <div id="lead-error" class="error" role="alert" hidden><p></p></div>
+      <button type="submit" class="primary">Show my full report</button>
+    </form>
+
+    <div id="report" hidden>
+      <div class="card"><h3>Category breakdown</h3><div id="categories"></div></div>
+      <div class="card"><h3>Your biggest gaps and how to fix them</h3><ol id="gaps"></ol></div>
+      <div class="card"><h3>Programmes that fit you</h3><div id="programmes"></div>
+        <p class="muted">Check each programme's current call and eligibility. <a id="catalogue" target="_blank" rel="noopener">Official EU catalogue</a></p></div>
+    </div>
+    <button type="button" id="again" class="secondary">Score again</button>
+    <p class="muted">This is an internal readiness estimate, not an official Erasmus Mundus score.</p>
+  </section>
+</main>
+</body>
+</html>
