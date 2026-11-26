@@ -63,3 +63,4 @@ progress { width: 100%; height: 10px; accent-color: var(--brand); }
 @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
 .category strong { white-space: nowrap; }
 @media (min-width: 600px) { .card { padding: 36px 40px; } }
+:root { color-scheme: only light; }
