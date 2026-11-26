@@ -2,7 +2,7 @@
 
 Upload a resume (PDF/DOCX), answer 4 questions, get a readiness score out of 100, then unlock a full report (breakdown, top 3 gaps with fixes, 3 programme matches).
 
-**Live URL:** _add after deploying_
+**Live URL:** https://em-scorer.vercel.app/
 
 ## Setup (local)
 
